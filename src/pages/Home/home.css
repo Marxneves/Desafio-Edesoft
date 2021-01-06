@@ -1,0 +1,19 @@
+label {
+  margin: 10px;
+}
+
+table {
+  width: 90%;
+  height: 150px;
+  margin: auto;
+  text-align: center;
+}
+
+.filters {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.main {
+  text-align: center;
+}

@@ -1,0 +1,19 @@
+.top-bar {
+  padding: 10px;
+  background-color: black;
+}
+
+.list-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  color: blue;
+  transition: all 1.2s;
+}
