@@ -14,6 +14,10 @@ table {
   margin: 20px auto;
 }
 
-.main {
+.main-container {
   text-align: center;
+}
+
+.main-container input, select{
+  margin-left: 4px;
 }

@@ -22,14 +22,14 @@ export default function Home() {
   };
 
   return (
-    <div className="main">
+    <main className="main-container">
       <h1>Lista de Fornecedores</h1>
       {initialData !== '' && (
         <div className="filters">
           <label htmlFor="companies">
             Empresas:
-            <select id="companies" value={companySelected} onChange={ ({ target }) => setCompanySelected(target.value) }>
-              <option value="" hidden>Selecione a empresa</option>
+            <select id="companies" value={ companySelected } onChange={ ({ target }) => setCompanySelected(target.value) }>
+              <option value="">Selecione a empresa</option>
               { initialData.companies.map(({ nomeFantasia, CNPJ }) => (
                 <option key={ CNPJ } value={ nomeFantasia }>{ nomeFantasia }</option>
               )) }
@@ -37,15 +37,15 @@ export default function Home() {
           </label>
           <label htmlFor="name">
             Nome:
-            <input id="name" type="text" value={name} onChange={ ({ target }) => setName(target.value) } />
+            <input id="name" type="text" value={ name } onChange={ ({ target }) => setName(target.value) } />
           </label>
           <label htmlFor="document">
             CPF/CNPJ:
-            <input id="document" type="text" value={document} onChange={ ({ target }) => setDocument(target.value) } />
+            <input id="document" type="text" value={ document } onChange={ ({ target }) => setDocument(target.value) } />
           </label>
           <label htmlFor="date">
             Data de Cadastro:
-            <input id="date" type="text" value={date} onChange={ ({ target }) => setDate(target.value) } />
+            <input id="date" type="text" value={ date } onChange={ ({ target }) => setDate(target.value) } />
           </label>
           <button onClick={ resetFilters } type="button">Limpar Filtros</button>
         </div>
@@ -55,22 +55,22 @@ export default function Home() {
         <table border='1'>
           <thead>
             <tr>
-              { header.map((head) => <th key={head}>{ head }</th>) }
+              { header.map((head) => <th key={ head }>{ head }</th>) }
             </tr>
           </thead>
           <tbody>
             { initialData.providers
               .filter(({ empresa }) => (
-                companySelected !== '' ?  empresa === companySelected : true
+                companySelected !== '' ? empresa === companySelected : true
               ))
               .filter(({ nome }) => (
-                name !== '' ?  nome.toUpperCase().includes(name.toUpperCase()) : true
+                name !== '' ? nome.toUpperCase().includes(name.toUpperCase()) : true
               ))
               .filter(({ CPFouCNPJ }) => (
-                document !== '' ?  CPFouCNPJ.includes(document) : true
+                document !== '' ? CPFouCNPJ.includes(document) : true
               ))
-              .filter(({ dataHoraCadastro}) => (
-                date !== '' ?  dataHoraCadastro.includes(date) : true
+              .filter(({ dataHoraCadastro }) => (
+                date !== '' ? dataHoraCadastro.includes(date) : true
               ))
               .map((provides, index) => (
                 <tr key={ index }>
@@ -81,6 +81,6 @@ export default function Home() {
           </tbody>
         </table>
       ) }
-    </div>
+    </main>
   );
 }
