@@ -1,0 +1,18 @@
+.links-container {
+  display: flex;
+  justify-content: center;
+}
+.links-container button{
+  font-size: 28px;
+  margin: 100px 10px;
+  width: 350px;
+  height: 120px;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+}
+
+.links-container button:hover {
+  background-color: blue;
+  transition: all 1.2s;
+}

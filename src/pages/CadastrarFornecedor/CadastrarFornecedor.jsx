@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import data from '../../mock/data';
-import './criarFornecedor.css';
+import './cadastrarFornecedor.css';
 
 export default function CriarFornecedor() {
   const [companySelected, setCompanySelected] = useState('');
@@ -29,11 +29,6 @@ export default function CriarFornecedor() {
     }
 
   }, [bornDate, companySelected]);
-  
-  useEffect(() => {
-    const validate = formValidator();
-    setIsValid(validate);
-  }, [name, register, telephone]);
 
   const formValidator = () => {
     if (name.length < 4) return false
@@ -42,22 +37,27 @@ export default function CriarFornecedor() {
     return true
   };
 
+  useEffect(() => {
+    const validate = formValidator();
+    setIsValid(validate);
+  }, [name, register, telephone, formValidator]);
+
   const saveProvider = () => {
     const date = new Date();
-      data.providers.push(
-        {
-          empresa: companySelected,
-          nome: name,
-          tipoDePessoa: person,
-          CPFouCNPJ: register,
-          RG: document === '' ? '-' : document,
-          dataHoraCadastro: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
-          dataNascimento: bornDate === '' ? '-' : bornDate,
-          telefone: telephone,
-        },
-      );
-  
-      history.push('/');
+    data.providers.push(
+      {
+        empresa: companySelected,
+        nome: name,
+        tipoDePessoa: person,
+        CPFouCNPJ: register,
+        RG: document === '' ? '-' : document,
+        dataHoraCadastro: `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
+        dataNascimento: bornDate === '' ? '-' : bornDate,
+        telefone: telephone,
+      },
+    );
+
+    history.push('/');
   };
 
   return (
@@ -89,7 +89,7 @@ export default function CriarFornecedor() {
 
         <label htmlFor="cpfOrCnpj">
           CPF ou CNPJ:
-        <input id="cpfOrCnpj" type="text" value={ register } onChange={ ({ target }) => setRegister(target.value) } />
+          <input id="cpfOrCnpj" type="text" value={ register } onChange={ ({ target }) => setRegister(target.value) } />
         </label>
 
         { person === 'Física' && (
@@ -105,13 +105,13 @@ export default function CriarFornecedor() {
             <input id="bornDate" type="text" value={ bornDate } onChange={ ({ target }) => setBornDate(target.value) } />
           </label>)
         }
-        {isUnderage && <span className="menor">Menor de idade</span> }
+        { isUnderage && <span className="menor">Menor de idade</span> }
         <label htmlFor="telephone">
           Telefone:
-        <input id="telephone" type="tel" value={ telephone } onChange={ ({ target }) => setTelephone(target.value) } />
+          <input id="telephone" type="tel" value={ telephone } onChange={ ({ target }) => setTelephone(target.value) } />
         </label>
 
-        <button disabled={isUnderage || !isValid} className="btn-create" onClick={ saveProvider } type="button">Cadastrar</button>
+        <button disabled={ isUnderage || !isValid } className="btn-create" onClick={ saveProvider } type="button">Cadastrar</button>
       </form>
     </main>
   );

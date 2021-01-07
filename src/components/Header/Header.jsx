@@ -8,7 +8,7 @@ export default function Header() {
         <ul className="list-nav">
           <Link to="/">Lista de Fornecedores</Link>
           <Link to="/fornecedor">Cadastrar Novo Fornecedor</Link>
-          <Link to="/empresa">Cadastrar Nova Empresa</Link>
+          <Link to="/empresa">Empresas</Link>
         </ul>
       </nav>
     </header>
